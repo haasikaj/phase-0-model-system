@@ -12,9 +12,7 @@ tier_map:
 
 intents:
 
-  # ===========================================================================
   # CATEGORY: CODE
-  # ===========================================================================
   - id: "code_generation"
     category: "CODE"
     description: "Generate new code, functions, modules, or boilerplate."
@@ -36,9 +34,7 @@ intents:
     default_tier: "standard"
     min_tier: "fast"
 
-  # ===========================================================================
   # CATEGORY: REASONING
-  # ===========================================================================
   - id: "logical_reasoning"
     category: "REASONING"
     description: "Multi-step reasoning, logic puzzles, structured thinking."
@@ -53,9 +49,7 @@ intents:
     default_tier: "powerful"
     min_tier: "powerful"
 
-  # ===========================================================================
   # CATEGORY: CONTENT
-  # ===========================================================================
   - id: "creative_writing"
     category: "CONTENT"
     description: "Stories, scripts, brainstorming, narrative generation."
@@ -77,9 +71,7 @@ intents:
     default_tier: "fast"
     min_tier: "fast"
 
-  # ===========================================================================
   # CATEGORY: ANALYSIS
-  # ===========================================================================
   - id: "data_analysis"
     category: "ANALYSIS"
     description: "Interpretation of tables, CSVs, charts, and structured data."
@@ -94,9 +86,7 @@ intents:
     default_tier: "powerful"
     min_tier: "standard"
 
-  # ===========================================================================
   # CATEGORY: OPERATIONAL
-  # ===========================================================================
   - id: "task_planning"
     category: "OPERATIONAL"
     description: "Planning, scheduling, workflow breakdown, and task routing."
