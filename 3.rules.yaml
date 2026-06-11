@@ -3,9 +3,7 @@
 
 rules:
 
-  # ===========================================================================
   # 1. Route architecture work to Powerful tier
-  # ===========================================================================
   - name: "architecture_to_powerful"
     type: "route"
     match_by: "intent"
@@ -15,9 +13,7 @@ rules:
     scope: "all_agents"
     priority: 100
 
-  # ===========================================================================
   # 2. Boost security-related prompts to at least Standard
-  # ===========================================================================
   - name: "security_keywords_standard"
     type: "boost"
     match_by: "keyword"
@@ -30,9 +26,7 @@ rules:
     scope: "all_agents"
     priority: 90
 
-  # ===========================================================================
   # 3. Doc-writer can never exceed Fast
-  # ===========================================================================
   - name: "doc_writer_fast_only"
     type: "limit"
     match_by: "agent"
@@ -42,9 +36,7 @@ rules:
     scope: "agent"
     priority: 80
 
-  # ===========================================================================
   # 4. Active incident handling
-  # ===========================================================================
   - name: "payment_service_incident"
     type: "timed"
     match_by: "workspace"
@@ -55,9 +47,7 @@ rules:
     priority: 1000
     expires_at: "2026-12-31T23:59:59Z"
 
-  # ===========================================================================
   # 5. Route image generation to DALL-E
-  # ===========================================================================
   - name: "image_gen_dalle3"
     type: "redirect"
     match_by: "intent"
@@ -68,9 +58,7 @@ rules:
     scope: "all_agents"
     priority: 70
 
-  # ===========================================================================
   # 6. Example cost cap rule (required by schema coverage)
-  # ===========================================================================
   - name: "creative_cost_cap"
     type: "cost_cap"
     match_by: "session_size"
