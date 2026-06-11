@@ -1,0 +1,188 @@
+# models.yaml
+# Phase-0 model catalog.
+# Used by EP1 / EP2 model selection and routing.
+# Unknown keys should be rejected by validation.
+
+# tier:
+#   - fast
+#   - standard
+#   - powerful
+#
+# status:
+#   - active
+#   - preview
+#   - deprecated
+
+# Example:
+#
+# - id: "gpt-4o"
+#   provider: "openai"
+#   tier: "standard"
+#   status: "active"
+#
+#   pricing:
+#     input: 5.00
+#     output: 15.00
+#
+#   specs:
+#     max_output_tokens: 4096
+#     supports_images: true
+#     supports_tools: true
+#     supports_reasoning: true
+#
+#   context_profile:
+#     native_window: 128000
+#     effective_window: 110000
+#     memory_budget_tokens_tokens: 18000
+#     compaction_floor: 0.20
+#
+#   best_for:
+#     - "general chat"
+#     - "tool use"
+
+models:
+
+  # ---------------------------------------------------------------------------
+  # 1. Claude 3.5 Haiku
+  # ---------------------------------------------------------------------------
+  - id: "claude-3-5-haiku"          
+    provider: "anthropic"           
+    tier: "fast"                    
+    status: "active"                
+
+    pricing:                        
+      input: 0.25                   
+      output: 1.25                  
+
+    specs:
+      max_output_tokens: 4096       
+      supports_images: false        
+      supports_tools: true          
+      supports_reasoning: false     
+
+    context_profile:
+      native_window: 200000         
+      effective_window: 180000      
+      memory_budget_tokens: 20000   
+      compaction_floor: 0.15    
+
+    best_for:
+      - "fast general chat"
+      - "low-cost inference"
+      - "high-volume workloads"
+
+  # ---------------------------------------------------------------------------
+  # 2. Claude 3.5 Sonnet
+  # ---------------------------------------------------------------------------
+  - id: "claude-3-5-sonnet"
+    provider: "anthropic"
+    tier: "standard"
+    status: "active"
+
+    pricing:
+      input: 3.00
+      output: 15.00
+
+    specs:
+      max_output_tokens: 8192
+      supports_images: true
+      supports_tools: true
+      supports_reasoning: true
+
+    context_profile:
+      native_window: 200000
+      effective_window: 170000
+      memory_budget_tokens: 30000
+      compaction_floor: 0.20
+
+    best_for:
+      - "balanced reasoning"
+      - "analysis"
+      - "coding"
+
+  # ---------------------------------------------------------------------------
+  # 3. Claude 3 Opus
+  # ---------------------------------------------------------------------------
+  - id: "claude-3-opus"
+    provider: "anthropic"
+    tier: "powerful"
+    status: "active"
+
+    pricing:
+      input: 15.00
+      output: 75.00
+
+    specs:
+      max_output_tokens: 8192
+      supports_images: true
+      supports_tools: true
+      supports_reasoning: true
+
+    context_profile:
+      native_window: 200000
+      effective_window: 160000
+      memory_budget_tokens: 40000
+      compaction_floor: 0.25
+
+    best_for:
+      - "deep reasoning"
+      - "complex problem solving"
+      - "long-context analysis"
+
+  # ---------------------------------------------------------------------------
+  # 4. GPT‑4o
+  # ---------------------------------------------------------------------------
+  - id: "gpt-4o"
+    provider: "openai"
+    tier: "standard"
+    status: "active"
+
+    pricing:
+      input: 5.00
+      output: 15.00
+
+    specs:
+      max_output_tokens: 4096
+      supports_images: true
+      supports_tools: true
+      supports_reasoning: true
+
+    context_profile:
+      native_window: 128000
+      effective_window: 110000
+      memory_budget_tokens: 18000
+      compaction_floor: 0.20
+
+    best_for:
+      - "multimodal workflows"
+      - "general-purpose assistants"
+      - "tool use"
+
+  # ---------------------------------------------------------------------------
+  # 5. Gemini 2.0 Pro
+  # ---------------------------------------------------------------------------
+  - id: "gemini-2-0-pro"
+    provider: "google"
+    tier: "powerful"
+    status: "active"
+
+    pricing:
+      input: 1.00
+      output: 5.00
+
+    specs:
+      max_output_tokens: 8192
+      supports_images: true
+      supports_tools: true
+      supports_reasoning: true
+
+    context_profile:
+      native_window: 2000000
+      effective_window: 1800000
+      memory_budget_tokens: 200000
+      compaction_floor: 0.10
+
+    best_for:
+      - "large document analysis"
+      - "RAG workloads"
+      - "extremely long context tasks"

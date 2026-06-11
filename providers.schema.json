@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["providers"],
+  "properties": {
+    "providers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "kind",
+          "role",
+          "base_url",
+          "api_key_ref",
+          "rate_limit_rpm",
+          "rate_limit_tpm"
+        ],
+        "properties": {
+          "id": { "type": "string" },
+
+          "kind": {
+            "type": "string",
+            "enum": ["anthropic", "openai", "google", "ollama", "custom"]
+          },
+
+          "role": {
+            "type": "string",
+            "enum": ["primary", "fallback", "secondary"]
+          },
+
+          "base_url": { "type": "string", "format": "uri" },
+
+          "api_key_ref": {
+            "type": "string",
+            "pattern": "^\\$\\{[A-Z0-9_]+\\}$"
+          },
+
+          "rate_limit_rpm": { "type": "integer" },
+
+          "rate_limit_tpm": { "type": "integer" }
+        }
+      }
+    }
+  }
+}

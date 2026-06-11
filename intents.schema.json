@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["tier_map", "intents"],
+
+  "properties": {
+    "tier_map": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fast", "standard", "powerful"],
+      "properties": {
+        "fast": { "type": "integer" },
+        "standard": { "type": "integer" },
+        "powerful": { "type": "integer" }
+      }
+    },
+
+    "intents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "category",
+          "description",
+          "complexity",
+          "default_tier",
+          "min_tier"
+        ],
+
+        "properties": {
+          "id": { "type": "string" },
+
+          "category": {
+            "type": "string",
+            "enum": ["CODE", "REASONING", "CONTENT", "ANALYSIS", "OPERATIONAL"]
+          },
+
+          "description": { "type": "string" },
+
+          "complexity": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5
+          },
+
+          "default_tier": {
+            "type": "string",
+            "enum": ["fast", "standard", "powerful"]
+          },
+
+          "min_tier": {
+            "type": "string",
+            "enum": ["fast", "standard", "powerful"]
+          }
+        },
+
+        "allOf": [
+          {
+            "oneOf": [
+              {
+                "properties": {
+                  "default_tier": { "const": "fast" },
+                  "min_tier": { "enum": ["fast"] }
+                }
+              },
+              {
+                "properties": {
+                  "default_tier": { "const": "standard" },
+                  "min_tier": { "enum": ["fast", "standard"] }
+                }
+              },
+              {
+                "properties": {
+                  "default_tier": { "const": "powerful" },
+                  "min_tier": { "enum": ["fast", "standard", "powerful"] }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

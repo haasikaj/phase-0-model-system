@@ -1,0 +1,83 @@
+# providers.yaml
+# Phase-0 provider catalog.
+# Provider credentials must be referenced through environment variables.
+# Plaintext secrets are not allowed.
+
+# role:
+#   - primary
+#   - fallback
+#   - secondary
+#
+# kind:
+#   - anthropic
+#   - openai
+#   - google
+#   - ollama
+#   - custom
+
+# Example:
+#
+# - id: "openai"
+#   kind: "openai"
+#   role: "primary"
+#   base_url: "https://api.openai.com/v1"
+#   api_key_ref: "${OPENAI_API_KEY}"
+#   rate_limit_rpm: 5000
+#   rate_limit_tpm: 300000
+
+providers:
+
+  # ---------------------------------------------------------------------------
+  # Anthropic (Claude)
+  # ---------------------------------------------------------------------------
+  - id: "anthropic"
+    kind: "anthropic"                   
+    role: "primary"                      
+    base_url: "https://api.anthropic.com"
+    api_key_ref: "${ANTHROPIC_API_KEY}"   
+    rate_limit_rpm: 3000                 
+    rate_limit_tpm: 200000                
+
+  # ---------------------------------------------------------------------------
+  # OpenAI
+  # ---------------------------------------------------------------------------
+  - id: "openai"
+    kind: "openai"
+    role: "secondary"
+    base_url: "https://api.openai.com/v1"
+    api_key_ref: "${OPENAI_API_KEY}"
+    rate_limit_rpm: 5000
+    rate_limit_tpm: 300000
+
+  # ---------------------------------------------------------------------------
+  # Google (Gemini)
+  # ---------------------------------------------------------------------------
+  - id: "google"
+    kind: "google"
+    role: "fallback"
+    base_url: "https://generativelanguage.googleapis.com"
+    api_key_ref: "${GOOGLE_API_KEY}"
+    rate_limit_rpm: 2000
+    rate_limit_tpm: 150000
+
+  # ---------------------------------------------------------------------------
+  # Ollama (local models)
+  # ---------------------------------------------------------------------------
+  - id: "ollama"
+    kind: "ollama"
+    role: "secondary"
+    base_url: "http://localhost:11434"
+    api_key_ref: "${OLLAMA_API_KEY}"
+    rate_limit_rpm: 10000
+    rate_limit_tpm: 500000
+
+  # ---------------------------------------------------------------------------
+  # Custom provider 
+  # ---------------------------------------------------------------------------
+  - id: "custom"
+    kind: "custom"
+    role: "fallback"
+    base_url: "https://example.com/api"
+    api_key_ref: "${CUSTOM_API_KEY}"
+    rate_limit_rpm: 1000
+    rate_limit_tpm: 100000

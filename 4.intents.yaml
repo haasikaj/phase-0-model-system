@@ -1,0 +1,112 @@
+# intents.yaml
+# Phase-0 intent catalog
+# Mirrors 5 categories: CODE / REASONING / CONTENT / ANALYSIS / OPERATIONAL
+# Each intent includes: id, category, description, complexity (1–5), default_tier, min_tier
+
+# tier map (required for validation)
+# fast < standard < powerful
+tier_map:
+  fast: 1
+  standard: 2
+  powerful: 3
+
+intents:
+
+  # ===========================================================================
+  # CATEGORY: CODE
+  # ===========================================================================
+  - id: "code_generation"
+    category: "CODE"
+    description: "Generate new code, functions, modules, or boilerplate."
+    complexity: 3
+    default_tier: "standard"
+    min_tier: "fast"
+
+  - id: "code_debugging"
+    category: "CODE"
+    description: "Fix bugs, identify errors, and correct broken logic."
+    complexity: 4
+    default_tier: "standard"
+    min_tier: "standard"
+
+  - id: "code_review"
+    category: "CODE"
+    description: "Review code for quality, structure, and improvements."
+    complexity: 3
+    default_tier: "standard"
+    min_tier: "fast"
+
+  # ===========================================================================
+  # CATEGORY: REASONING
+  # ===========================================================================
+  - id: "logical_reasoning"
+    category: "REASONING"
+    description: "Multi-step reasoning, logic puzzles, structured thinking."
+    complexity: 4
+    default_tier: "powerful"
+    min_tier: "standard"
+
+  - id: "deep_analysis"
+    category: "REASONING"
+    description: "High-depth reasoning requiring long chains of inference."
+    complexity: 5
+    default_tier: "powerful"
+    min_tier: "powerful"
+
+  # ===========================================================================
+  # CATEGORY: CONTENT
+  # ===========================================================================
+  - id: "creative_writing"
+    category: "CONTENT"
+    description: "Stories, scripts, brainstorming, narrative generation."
+    complexity: 2
+    default_tier: "standard"
+    min_tier: "fast"
+
+  - id: "summarization"
+    category: "CONTENT"
+    description: "Summaries of long documents, transcripts, or articles."
+    complexity: 3
+    default_tier: "standard"
+    min_tier: "fast"
+
+  - id: "translation"
+    category: "CONTENT"
+    description: "Language translation and multilingual tasks."
+    complexity: 2
+    default_tier: "fast"
+    min_tier: "fast"
+
+  # ===========================================================================
+  # CATEGORY: ANALYSIS
+  # ===========================================================================
+  - id: "data_analysis"
+    category: "ANALYSIS"
+    description: "Interpretation of tables, CSVs, charts, and structured data."
+    complexity: 3
+    default_tier: "standard"
+    min_tier: "fast"
+
+  - id: "impact_analysis"
+    category: "ANALYSIS"
+    description: "Impact evaluation, risk assessment, and document correction."
+    complexity: 4
+    default_tier: "powerful"
+    min_tier: "standard"
+
+  # ===========================================================================
+  # CATEGORY: OPERATIONAL
+  # ===========================================================================
+  - id: "task_planning"
+    category: "OPERATIONAL"
+    description: "Planning, scheduling, workflow breakdown, and task routing."
+    complexity: 2
+    default_tier: "fast"
+    min_tier: "fast"
+
+  - id: "instruction_following"
+    category: "OPERATIONAL"
+    description: "Strict instruction execution, formatting, and structured output."
+    complexity: 2
+    default_tier: "fast"
+    min_tier: "fast"

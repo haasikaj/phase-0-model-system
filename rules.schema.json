@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["rules"],
+  "properties": {
+    "rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "type",
+          "match_by",
+          "match_value",
+          "action",
+          "scope",
+          "priority"
+        ],
+        "properties": {
+          "name": { "type": "string" },
+
+          "type": {
+            "type": "string",
+            "enum": ["route", "boost", "limit", "redirect", "cost_cap", "timed"]
+          },
+
+          "match_by": {
+            "type": "string",
+            "enum": ["intent", "keyword", "agent", "workspace", "session_size"]
+          },
+
+          "match_value": {
+            "oneOf": [
+              { "type": "string" },
+              { "type": "array", "items": { "type": "string" } },
+              { "type": "object" }
+            ]
+          },
+
+          "action": {
+            "type": "object"
+          },
+
+          "scope": { "type": "string" },
+
+          "priority": { "type": "integer" },
+
+          "expires_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+
+        "allOf": [
+          {
+            "if": {
+              "properties": { "match_by": { "const": "intent" } }
+            },
+            "then": {
+              "properties": {
+                "match_value": { "type": "string" }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": { "match_by": { "const": "keyword" } }
+            },
+            "then": {
+              "properties": {
+                "match_value": {
+                  "type": "array",
+                  "items": { "type": "string" }
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": { "match_by": { "const": "agent" } }
+            },
+            "then": {
+              "properties": {
+                "match_value": { "type": "string" }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": { "match_by": { "const": "workspace" } }
+            },
+            "then": {
+              "properties": {
+                "match_value": { "type": "string" }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": { "match_by": { "const": "session_size" } }
+            },
+            "then": {
+              "properties": {
+                "match_value": { "type": "object" }
+              }
+            }
+          },
+
+          {
+            "if": {
+              "properties": { "type": { "const": "timed" } }
+            },
+            "then": {
+              "required": ["expires_at"]
+            }
+          }
+        ]
+      }
+    }
+  }
+}
